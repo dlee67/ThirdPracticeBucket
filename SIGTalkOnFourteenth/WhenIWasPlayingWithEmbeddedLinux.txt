@@ -1,0 +1,52 @@
+Decided to learn things about embedded development from this book
+Mastering Embedded Linux Programming
+
+At one point in Karim's life, his customer came to him and told him,
+"we want Android in our headless system."
+His client came up with two reasons why he wanted just that:
+1.) Client's company has to maintain multiple platforms, some of them
+requires GUI interactions, while others didn't; therefore, let's
+standardize the OS being used to Android.
+2.) We can grab a random Android developer from some street and
+have him/her start developing their embedded system.
+
+To give a descent compare and contrast between the usual embedded system development
+and Android Things, I have decided to learn bits and pieces about the
+Embedded Systems, where I have largely referred the book called,
+"Mastering Embedded Linux Programming."
+
+In the world of Embedded Linux Programming, we need this thing called toolchain;
+basically, it's a chain of software utilities contributing for program's compilation,
+which could be composed with things like GCC and C libraries.
+
+The book instructs the reader with this utility called crosstool-NG.
+
+sudo apt-get install automake bison chrpath flex g++ git gperf \
+gawk libexpat1-dev libncurses5-dev libsdl1.2-dev libtool \
+python2.7-dev texinfo
+
+The exact command above was needed to download the packes for crosstool-NG.
+
+git clone https://github.com/crosstool-ng/crosstool-ng.git
+cd crosstool-ng
+git checkout crosstool-ng-1.22.0
+./bootstrap
+./configure --enable-local
+make
+make install
+
+Where crosstool-NG is a set of make scripts, which is comparable to the
+bunch of Gradle files.
+
+After installing the utilities mentioned above, I've never encountered something
+more unwelcoming than this.
+Consider this hardware called BeagleBone Black,
+The BeagleBone Black has a TI AM335x SoC,
+which contains an ARM Cortex A8 core and a VFPv3 floating point unit.
+Since the BeagleBone Black has plenty of RAM and storage,
+we can use glibc as the C library; therefore,
+we can use this toolchain called arm-cortex_a8-linux-gnueabi.
+On the other side of things, let's consider
+x86_64-w64-mingw32,x86_64-pc-linux-gnu toolchain.
+That toolchain will not be able to create executable for BeagleBone
+because it was for x86 architectures.
