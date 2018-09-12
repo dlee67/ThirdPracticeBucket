@@ -6,6 +6,9 @@ using namespace std;
 class DoubleMajor: public Student{
    public:
       string specialization;
+      ~DoubleMajor(){
+         cout << "Deleting the DoubleMajor object." << "\n";
+      };
 
    void expressAge(){
       cout << "I am " << age << " years old!.\n";

@@ -76,4 +76,5 @@ int main(){
    //all objects are ultimately a chunk of memory.
    DoubleMajor* dbMj = new DoubleMajor();
    dbMj->expressAlphaGeekPride();
+   delete dbMj;
 }
