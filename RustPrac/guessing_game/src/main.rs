@@ -21,6 +21,8 @@ fn main() {
 
         // Despite the fact that I've already declared the guess to be assigned with something,
         // but Rust allows shadow, which allows me to re-use the variable.
+        // Also, this is where I recognize that Rust uses enums a lot more than other languages by a nature.
+        // So, in the down below, parse() returns the Result enum, which either has Ok or Err.
         let guess: u32 = guess.trim().parse(){
             Ok(num) => num,
             Err(_) => continue,
@@ -30,6 +32,7 @@ fn main() {
         // In the world of Rust, {} is something called placeholder.
         println!("You guessed: {}", guess);
 
+        // Where the cmp returns the Ordering enum.
         match guess.cmp(&secret_number){
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
