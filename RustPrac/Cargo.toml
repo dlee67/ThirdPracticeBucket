@@ -1,0 +1,11 @@
+[package]
+name = "RustPrac"
+version = "0.1.0"
+authors = ["dlee67 <dlee67@msudenver.edu>"]
+edition = "2018"
+
+[dependencies]
+
+[[bin]]
+name = "RustPrac"
+path = "main.rs"

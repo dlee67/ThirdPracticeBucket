@@ -30,16 +30,17 @@
 
 package com.raywenderlich.githubrepolist.data
 
-import android.util.Log
 import com.google.gson.Gson
 import java.net.URL
 
-
 class Request(private val url: String) {
 
+  //https://kotlinlang.org/docs/reference/object-declarations.html
+  //Not entirely sure why this exists...
   companion object { //1
     private val URL = "https://api.github.com/search/repositories"
     private val SEARCH = "q=language:kotlin&sort=stars&order=desc"
+    //Oh, nice, Kotlin can do template Strings!
     private val COMPLETE_URL = "$URL?$SEARCH"
   }
 

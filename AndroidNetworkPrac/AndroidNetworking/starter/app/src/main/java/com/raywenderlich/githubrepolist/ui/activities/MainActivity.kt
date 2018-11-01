@@ -37,13 +37,19 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import api.RepositoryRetriever
 import com.raywenderlich.githubrepolist.R
+import com.raywenderlich.githubrepolist.data.RepoResult
 import com.raywenderlich.githubrepolist.ui.adapters.RepoListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 import com.raywenderlich.githubrepolist.data.Request
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /*
   Got it from: https://www.raywenderlich.com/2-android-networking-tutorial-getting-started
@@ -56,6 +62,22 @@ import com.raywenderlich.githubrepolist.data.Request
 */
 class MainActivity : Activity() {
 
+  private val repoRetriever = RepositoryRetriever() // 1
+
+  // 2
+  private val callback = object : Callback<RepoResult> {
+    override fun onFailure(call: Call<RepoResult>?, t: Throwable?) {
+      Log.e("MainActivity", "Problem calling Github API", t)
+    }
+
+    override fun onResponse(call: Call<RepoResult>?, response: Response<RepoResult>?) {
+      response?.isSuccessful.let {
+        val resultList = RepoResult(response?.body()?.items ?: emptyList())
+        repoList.adapter = RepoListAdapter(resultList)
+      }
+    }
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -67,8 +89,11 @@ class MainActivity : Activity() {
     // Culturally, it seems like Anko library is one way for Jetbrain to patch up
     // a lot of the things programmers hated about Java.
     if (isNetworkConnected()) {
+      // doAsync is part of Kotlin library called Anko.
       doAsync {
         val result = Request(url).run()
+        // Anko's DSL, uiThread, updates the doAsync after the background thread created by
+        // doAsynch is completed.
         uiThread {
           repoList.adapter = RepoListAdapter(result)
         }
