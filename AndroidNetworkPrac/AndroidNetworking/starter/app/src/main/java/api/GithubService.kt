@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface GithubService {
     //The below two lines makes a GET request to some Github place.
-
+    //The argument within the GET parameter is the URL.
     @GET("/repositories")
     fun retrieveRepositories(): Call<RepoResult>
 
