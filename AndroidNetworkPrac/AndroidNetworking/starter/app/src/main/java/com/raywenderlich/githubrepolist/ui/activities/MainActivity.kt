@@ -89,20 +89,16 @@ class MainActivity : Activity() {
     // Culturally, it seems like Anko library is one way for Jetbrain to patch up
     // a lot of the things programmers hated about Java.
     if (isNetworkConnected()) {
-      // doAsync is part of Kotlin library called Anko.
-      doAsync {
-        val result = Request(url).run()
-        // Anko's DSL, uiThread, updates the doAsync after the background thread created by
-        // doAsynch is completed.
-        uiThread {
-          repoList.adapter = RepoListAdapter(result)
-        }
-      }
+      repoRetriever.getRepositories(callback)
     } else {
       AlertDialog.Builder(this).setTitle("No Internet Connection")
               .setMessage("Please check your internet connection and try again")
-              .setPositiveButton(android.R.string.ok) { _, _ -> } // I am seeing lambdas all the time, I better go learn more about it for Kotlin.
+              .setPositiveButton(android.R.string.ok) { _, _ -> }
               .setIcon(android.R.drawable.ic_dialog_alert).show()
+    }
+
+    refreshButton.setOnClickListener {
+      repoRetriever.getRepositories(callback)
     }
   }
 
