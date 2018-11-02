@@ -1,0 +1,19 @@
+{
+  "name": "SomethingInElectron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^3.0.7"
+  },
+  "dependencies": {
+    "browser-window": "^0.4.0",
+    "monaco-loader": "^0.14.0"
+  }
+}
