@@ -1,6 +1,8 @@
 package com.example.bob.networkonmyown;
 
-public class HTTPResponse {
+import org.json.JSONObject;
+
+public class ListOfFollowing {
 
     private String login;
 

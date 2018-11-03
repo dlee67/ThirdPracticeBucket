@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,16 +26,20 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         HTTPRequest client = retrofit.create(HTTPRequest.class);
-        Call<HTTPResponse> call = client.getString();
+        Call<List<ListOfFollowing>> call = client.getListOfFollowings();
 
-        call.enqueue(new Callback<HTTPResponse>() {
+        call.enqueue(new Callback<List<ListOfFollowing>>() {
             @Override
-            public void onResponse(Call<HTTPResponse> call, Response<HTTPResponse> response) {
-                Log.i("dhl", response.body().getLogin());
+            public void onResponse(Call<List<ListOfFollowing>> call, Response<List<ListOfFollowing>> response) {
+                List<ListOfFollowing> followings = response.body();
+                //Log.i("dhl", followings.toString());
+                for(int index = 0; index < (followings.size() - 1); index++){
+                    Log.i("dhl", followings.get(index).getLogin());
+                }
             }
 
             @Override
-            public void onFailure(Call<HTTPResponse> call, Throwable t) {
+            public void onFailure(Call<List<ListOfFollowing>> call, Throwable t) {
                 Log.i("dhl", "Call failed: " + t.toString());
             }
         });
