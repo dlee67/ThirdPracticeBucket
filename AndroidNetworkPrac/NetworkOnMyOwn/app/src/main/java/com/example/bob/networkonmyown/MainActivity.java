@@ -4,8 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.json.JSONObject;
-
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,20 +25,46 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         HTTPRequest client = retrofit.create(HTTPRequest.class);
-        Call<List<ListOfFollowing>> call = client.getListOfFollowings();
 
-        call.enqueue(new Callback<List<ListOfFollowing>>() {
+        Call<List<FollowingUser>> followings = client.getListOfFollowings();
+
+        // The below block of code won't because HTTP requests must be made
+        // in a Thread other than UIThread.
+        //List<FollowingUser> listOfFollowings = null;
+        //try {
+        //    listOfFollowings = followings.execute().body();
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
+        //Call<FollowingUser> user = null;
+        //for(int index = 0; index < listOfFollowings.size(); index++){
+        //    try {
+        //        FollowingUser followingUser = client.seeIfHireable(listOfFollowings.get(index).getLogin())
+        //                .execute().body();
+        //        if(client.seeIfHireable(listOfFollowings.get(index).getLogin())
+        //                .execute().body().getHireable()){
+        //            Log.i("dhl", "User: " + followingUser.getLogin()
+        //            + "is hireable.");
+        //        }
+        //    } catch (IOException e) {
+        //        e.printStackTrace();
+        //    }
+        //}
+
+        // The below is a way to execute things asynchronously.
+        // It's even needed because you can't make HTTP request on a main thread in Android
+        followings.enqueue(new Callback<List<FollowingUser>>() {
             @Override
-            public void onResponse(Call<List<ListOfFollowing>> call, Response<List<ListOfFollowing>> response) {
-                List<ListOfFollowing> followings = response.body();
+            public void onResponse(Call<List<FollowingUser>> call, Response<List<FollowingUser>> response) {
+                List<FollowingUser> followings = response.body();
                 //Log.i("dhl", followings.toString());
                 for(int index = 0; index < (followings.size() - 1); index++){
                     Log.i("dhl", followings.get(index).getLogin());
                 }
             }
-
+        
             @Override
-            public void onFailure(Call<List<ListOfFollowing>> call, Throwable t) {
+            public void onFailure(Call<List<FollowingUser>> call, Throwable t) {
                 Log.i("dhl", "Call failed: " + t.toString());
             }
         });

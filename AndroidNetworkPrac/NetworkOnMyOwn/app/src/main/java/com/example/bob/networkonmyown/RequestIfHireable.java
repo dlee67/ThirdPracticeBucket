@@ -5,16 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RequestIfHireable {
 
-    //public String userName;
-    //
-    //public RequestIfHireable(String userName) {
-    //    this.userName = userName;
-    //}
-    //
-    //public boolean seeIfHireable() {
-    //    String baseUrl = "https://api.github.com/" + userName;
-    //    Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
-    //            .addConverterFactory(GsonConverterFactory.create())
-    //            .build();
-    //}
+    public static void seeIfHireable(String userName) {
+        String baseUrl = "https://api.github.com/";
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 }
