@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        HTTPRequest client = retrofit.create(HTTPRequest.class);
+        final HTTPRequest client = retrofit.create(HTTPRequest.class);
 
         Call<List<FollowingUser>> followings = client.getListOfFollowings();
 
@@ -57,9 +57,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<FollowingUser>> call, Response<List<FollowingUser>> response) {
                 List<FollowingUser> followings = response.body();
+                Call<FollowingUser> user = null;
                 //Log.i("dhl", followings.toString());
                 for(int index = 0; index < (followings.size() - 1); index++){
-                    Log.i("dhl", followings.get(index).getLogin());
+                    //Log.i("dhl", followings.get(index).getLogin());
+                    user = client.seeIfHireable(followings.get(index).getLogin());
+                    user.enqueue(new Callback<FollowingUser>() {
+                        @Override
+                        public void onResponse(Call<FollowingUser> call, Response<FollowingUser> response) {
+                            FollowingUser followingUser = response.body();
+                            if(followingUser.getHireable()){
+                                Log.i("dhl",  followingUser.getLogin() + " is hireable.");
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<FollowingUser> call, Throwable t) {
+
+                        }
+                    });
                 }
             }
         
