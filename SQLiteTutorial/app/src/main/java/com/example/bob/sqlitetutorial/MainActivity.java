@@ -6,8 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-//Referred:
-//https://www.tutorialspoint.com/android/android_sqlite_database.htm
+//Referred: https://www.tutorialspoint.com/android/android_sqlite_database.html
 
 public class MainActivity extends AppCompatActivity {
 
