@@ -1,0 +1,1 @@
+/home/bob/Desktop/WorkSpace/ThirdPracticeBucket/RustPrac/AfterLeavingRustForAwhile/BackToBasic/target/debug/BackToBasic: /home/bob/Desktop/WorkSpace/ThirdPracticeBucket/RustPrac/AfterLeavingRustForAwhile/BackToBasic/src/main.rs
