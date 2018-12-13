@@ -12,10 +12,9 @@ fn main() {
     mutate_reference(&mut y);
 
     println!("{}", y);
-}
 
-fn take_and_give_ownership(str: String) -> String{
-    str
+    let firstVec = Vec![1, 2, 3, 4, 5]
+    let secondVec = Vec![1, 2, 3]
 }
 
 // and in the parameters.
