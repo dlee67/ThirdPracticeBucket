@@ -1,3 +1,7 @@
+#Ctrl + L to clear the console.
+
+# Below sorta satisfies the CRUD.
+
 # Creates a table.
 CREATE TABLE Android(
   name text,
@@ -33,3 +37,12 @@ SELECT DISTINCT * Android;
 SELECT version FROM Android version ORDER BY version ASC
 # Vice versa of the above statement.
 SELECT version FROM Android version ORDER BY version DESC
+
+# Under the assumption that Above queries were executed in a sequence,
+DELETE FROM Android WHERE name="Kitkat";
+# The query above will delete both of the duplicate "Kitkat" attributes
+# everything within that row.
+
+# The below updates the
+UPDATE Android SET version=4.4 WHERE name="Lollipop";
+UPDATE ANDROID SET name="Kitkat" WHERE version=4.4;
