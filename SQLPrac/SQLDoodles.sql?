@@ -1,0 +1,35 @@
+# Creates a table.
+CREATE TABLE Android(
+  name text,
+  version float
+);
+
+# Inserts a new value to the specified columns.
+INSERT INTO Android(name, version)
+VALUES ("Kitkat", 4.4);
+
+# Grabs all the contents from the specified column, from the specified table.
+#     column     table
+SELECT name FROM Android;
+
+# Does the same thing as above, but from the multiple columns.
+#       columns            table
+SELECT name, version FROM Android;
+
+# This pretty much tells the SQL to dump everything from the Database.
+SELECT * FROM Android;
+
+# In the SQL table, I can deliberately cause a duplication.
+INSERT INTO Android(name, version)
+VALUES ("Kitkat", 4.4);
+
+# The below query will give everything back, including the duplicate we've just created.
+SELECT * FROM Android;
+
+# We can tell the SQL to give everything back without the duplication.
+SELECT DISTINCT * Android;
+
+# There is a way to order things around via using the grammar below
+SELECT version FROM Android version ORDER BY version ASC
+# Vice versa of the above statement.
+SELECT version FROM Android version ORDER BY version DESC
