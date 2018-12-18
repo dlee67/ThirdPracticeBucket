@@ -1,12 +1,20 @@
 #Ctrl + L to clear the console.
 
 # Below sorta satisfies the CRUD.
+# I guess I am gonna Kata this.
+
+# SQL has its own operator, where they can largely be replaced with
+# keywords like NOT.
+# https://www.w3schools.com/sql/sql_operators.asp
 
 # Creates a table.
 CREATE TABLE Android(
   name text,
   version float
 );
+
+# Table can be dropped via
+DROP TABLE Android;
 
 # Inserts a new value to the specified columns.
 INSERT INTO Android(name, version)
@@ -45,4 +53,21 @@ DELETE FROM Android WHERE name="Kitkat";
 
 # The below updates the
 UPDATE Android SET version=4.4 WHERE name="Lollipop";
-UPDATE ANDROID SET name="Kitkat" WHERE version=4.4;
+UPDATE Android SET name="Kitkat" WHERE version=4.4;
+
+# Let's assume I have below tables.
+CREATE TABLE CSStudents ( name text, GPA float, current_course text);
+INSERT TO CSStudents (name, GPA, current_course)
+VALUES ("Ezra Dudden", 4.0, "Computer Organization 2"), ("Ethan Johnston", 4.0, "PPL"), ("Ryan Wingard", 4.0, "Theory Comp"),
+("Alex Tusa", 4.0, "Senior Tech Project"), ("Saad", 3.0, "3250"), ("Dalton", 4.0, "OS"), ("Me", 3.55, "Senior Tech Project");
+
+CREATE TABLE MathStudents ( name text, GPA float, current_course text);
+INSERT INTO MathStudents (name, GPA, current_course)
+VALUES ("Ezra Dudden", 4.0, "Numerical"), ("Ethan Johnston", 4.0, "Real"), ("Ryan Wingard", 4.0, "Calculus 4"),
+("Alex Tusa", 4.0, "Proofs"), ("Ahern", 3.0, "stats"), ("Justin", 4.0, "DiffEq"), ("Devon", 4.0, "Grad School");
+
+# The below is way to grab information from two tables, after finding the correlations,
+SELECT CSStudents.name, MathStudents.current_course FROM CSStudents INNER JOIN MathStudents ON CSStudents.name=MathStudents.name;
+# but I don't get it.
+# https://www.w3schools.com/sql/sql_join.asp
+# Used the above reference.
