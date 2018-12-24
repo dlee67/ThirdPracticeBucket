@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public void displayResult(View view){
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
+        // When your application is using the combination of Resolver and Provider,
+        // there is no need to use a helper object in Activity classes
+        // (in fact, the official documentation states that it's a very entropy prone way
+        // to persist data).
         ThingHelper mDbHelper = new ThingHelper(this);
 
         // Create and/or open a database to read from it

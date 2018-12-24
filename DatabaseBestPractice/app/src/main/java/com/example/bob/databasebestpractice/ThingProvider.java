@@ -13,10 +13,19 @@ import android.util.Log;
 
 import com.example.bob.databasebestpractice.ThingContract.ThingEntry;
 
+/*
+    Thinking about the ContentProvider again, it's actually kinda neat.
+    The reason is because ContentProvider is essentially just a Uri matcher,
+    and Uri matcher, in my opinion, is much more graceful way to supply the application
+    with the needed resources.
+
+    The Uri matcher entirely gets rid of the coupling of codebase to codebase.
+*/
 public class ThingProvider extends ContentProvider{
 
     private ThingHelper dbHelper;
 
+    //UriMatch really just exists for the sake of convenience (and a standard).
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     private static final int THINGS = 100;
@@ -25,6 +34,8 @@ public class ThingProvider extends ContentProvider{
 
     static
     {
+        //Where expected Uri the needs to be specified before hand, before any of the CRUD
+        //operation happens.
         sUriMatcher.addURI(ThingEntry.CONTENT_AUTHORITY, ThingEntry.PATH_NAME, THINGS);
         sUriMatcher.addURI(ThingEntry.CONTENT_AUTHORITY, ThingEntry.PATH_NAME + "/#", THING_ID);
     }

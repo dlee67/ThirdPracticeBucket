@@ -26,6 +26,7 @@ public class ThingHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE);
     }
 
+    // Why is this here?
     @Override
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void onConfigure(SQLiteDatabase db){
