@@ -29,19 +29,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayResult(View view){
         CoursesHelper helper = new CoursesHelper(this);
-        String[] projection = {get.COLUMN_TERM, get.COLUMN_COURSE, get.COLUMN_FINAL_GRADE};
+        String[] projection =
+        {
+            get.COLUMN_TERM,
+            get.COLUMN_COURSE,
+            get.COLUMN_FINAL_GRADE
+        };
         Cursor cursor = getContentResolver()
-                .query(
-                    get.FINAL_GRADES_URI,
-                    projection,
-                    null,
-                    null,
-                    null
-                );
+            .query(
+                get.FINAL_GRADES_URI,
+                projection,
+                null,
+                null,
+                null
+            );
         try{
-            for(int index = 0; cursor.moveToNext(); index++){
-                Log.i("dhl", cursor.getString(index));
-            }
+            cursor.moveToNext();
+            do{
+                Log.i("dhl", cursor.getString(cursor.getPosition()));
+            }while(cursor.moveToNext());
         } finally {
             cursor.close();
         }

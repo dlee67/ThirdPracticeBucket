@@ -69,13 +69,20 @@ public class CoursesProvider extends ContentProvider{
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         final int match = uriMatcher.match(uri);
+        Log.i("dhl", "match got: " + match);
         switch (match){
             case FINAL_GRADES:
-                insertValues(uri, values);
+                // Was previously the line below:
+                // insertValues(uri, values);
+                // The above is critical failure because switch statements won't stop executing
+                // unless there is a return, or a break statement.
+                return insertValues(uri, values);
             default:
+                insertValues(uri, values);
                 throw new IllegalArgumentException
                 ("Insertion is not supported for: " + uri);
         }
+
     }
 
     private Uri insertValues(Uri uri, ContentValues values)
