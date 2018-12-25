@@ -44,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 null
             );
         try{
-            cursor.moveToNext();
-            do{
-                Log.i("dhl", cursor.getString(cursor.getPosition()));
-            }while(cursor.moveToNext());
+            while(cursor.moveToNext()){
+                for(int index = 0; index < cursor.getColumnCount(); index++) {
+                    Log.i("dhl", cursor.getString(index));
+                }
+            }
         } finally {
             cursor.close();
         }
