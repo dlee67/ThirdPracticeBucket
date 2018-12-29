@@ -2,7 +2,6 @@ package com.example.bob.androidconcurrency;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 
 public class SimpleLooper extends Thread{
 
@@ -18,14 +17,14 @@ public class SimpleLooper extends Thread{
     public void run(){
         Looper.prepare(); // to create one, we call prepare() to create the Looper.
                           // The prepare() is also responsible for creating the MessageQueue.
-                          // At the sametime, prepare() blocks the run(), until it is interrupted with a Message.
+                          // At the same time, prepare() blocks the run(), until it is interrupted with a Message.
         threadLooper = Looper.myLooper(); // myLooper returns the Looper object associated with the current thread.
         synchronized (startMonitor){
             started = true;
             startMonitor.notifyAll(); // Wakes up all Threads those are waiting on this monitor.
         }
         Looper.loop(); // and loop() to create the Handler. This is how Looper waits for Message.
-        // To stop the looper, we can call quit() or quitSafely().
+        // To stop the looper, we can call quit() or quitSafely().      
     }
 
     public void waitForStart(){
