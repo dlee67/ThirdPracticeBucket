@@ -16,5 +16,7 @@ class MyHandler extends Handler {
     public void handleMessage(Message msg){ // Invoked by the Looper
         // This is where the messages are handled.
         Log.i("dhl", String.valueOf(msg.getData().getCharSequence("RainyDay")));
+        Log.i("dhl", "Quitting looper.");
+        this.getLooper();
     }
 }

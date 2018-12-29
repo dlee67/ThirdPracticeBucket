@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         simpleLooper = new SimpleLooper();
         simpleLooper.start();
-        simpleLooper.waitForStart();
+        //simpleLooper.waitForStart();
 
         //The below is invalid.
         //Handler handler = new MyHandler(simpleLooper);
@@ -38,5 +39,8 @@ public class MainActivity extends AppCompatActivity {
         msg.setData(msgBundle);
         //Messages are not directly associated with the MessageQueue, but through a Handler.
         handler.sendMessage(msg);
+        //After adding below two lines, the message stopped showing in the Handler.
+        //Log.i("dhl", "Qutting looper.");
+        //simpleLooper.getLooper().quit();
     }
 }
