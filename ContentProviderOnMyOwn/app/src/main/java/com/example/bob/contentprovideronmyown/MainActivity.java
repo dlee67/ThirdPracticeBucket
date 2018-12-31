@@ -7,14 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
+
 import com.example.bob.contentprovideronmyown.CoursesContract.get;
 
 public class MainActivity extends AppCompatActivity {
+
+    //ListView listView;
+    //CoursesCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //listView = (ListView) findViewById(R.id.term_list);
     }
 
     public void insertQuery(View view){
@@ -43,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
             );
+        //adapter = new CoursesCursorAdapter(this, cursor);
+        //todoAdapter.changeCursor(todoCursor);
+        //By invoking the changeCursor, I can change what's being displayed on the ListView.
         try{
             while(cursor.moveToNext()){
                 for(int index = 0; index < cursor.getColumnCount(); index++) {

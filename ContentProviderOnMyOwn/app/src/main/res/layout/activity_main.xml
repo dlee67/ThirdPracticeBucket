@@ -9,16 +9,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="insertQuery"
-            android:text="insert query"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="displayResult"
-            android:text="display content"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="insertQuery"
+                android:text="insert query"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="displayResult"
+                android:text="display content"/>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/term_list"
+            android:layout_weight="8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
