@@ -16,3 +16,8 @@ while(cursor.moveToNext()){
    	Log.i("dhl", cursor.getString(index));
    }
 }
+
+## 12/30/18
+I never knew I can open up a Vim via Android Studio's terminal.
+
+Anyways, gonna start learning bits and pieces about the CursorLoader.
