@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public void insertQuery(View view){
         CoursesHelper coursesHelper = new CoursesHelper(getApplicationContext());
         ContentValues values = new ContentValues();
+        //A big mess is what _ID is.
+        //https://stackoverflow.com/questions/34817574/using-sqlite-in-android-to-get-rowid
         values.put(get._ID, "1");
         values.put(get.COLUMN_TERM, "Fall 2014");
         values.put(get.COLUMN_COURSE, "Computer Organization 2");
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayResult(View view){
         CoursesHelper helper = new CoursesHelper(this);
+        Log.i("dhl", "_ID in string: " + get._ID);
         String[] projection =
         {
             get._ID,
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 null
             );
         adapter = new CoursesCursorAdapter(this, cursor);
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter); // If you don't invoke setAdapter, nothing shows.
         //todoAdapter.changeCursor(todoCursor);
         //By invoking the changeCursor, I can change what's being displayed on the ListView.
         //try{

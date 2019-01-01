@@ -29,14 +29,17 @@ public class CoursesCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        TextView idView = (TextView) view.findViewById(R.id._id);
         TextView termView = (TextView) view.findViewById(R.id.term);
         TextView courseView = (TextView) view.findViewById(R.id.course_title);
         TextView finalGradeView = (TextView) view.findViewById(R.id.final_grade);
 
+        String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
         String term = cursor.getString(cursor.getColumnIndexOrThrow("Term"));
         String courseTitle = cursor.getString(cursor.getColumnIndexOrThrow("Course_Title"));
         String finalGrade = cursor.getString(cursor.getColumnIndexOrThrow("Final_Grade"));
 
+        idView.setText(id);
         termView.setText(term);
         courseView.setText(courseTitle);
         finalGradeView.setText(finalGrade);
