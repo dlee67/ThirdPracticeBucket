@@ -24,6 +24,7 @@ public class CoursesContract {
                 "CREATE TABLE " +
                 FINAL_GRADES_TABLE +
                 " (" +
+                _ID + ", " +
                 COLUMN_TERM + ", " +
                 COLUMN_COURSE + ", " +
                 COLUMN_FINAL_GRADE +

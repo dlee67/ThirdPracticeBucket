@@ -13,20 +13,21 @@ import com.example.bob.contentprovideronmyown.CoursesContract.get;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ListView listView;
-    //CoursesCursorAdapter adapter;
+    ListView listView;
+    CoursesCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //listView = (ListView) findViewById(R.id.term_list);
+        listView = findViewById(R.id.term_list);
     }
 
     public void insertQuery(View view){
         CoursesHelper coursesHelper = new CoursesHelper(getApplicationContext());
         ContentValues values = new ContentValues();
+        values.put(get._ID, "1");
         values.put(get.COLUMN_TERM, "Fall 2014");
         values.put(get.COLUMN_COURSE, "Computer Organization 2");
         values.put(get.COLUMN_FINAL_GRADE, "C+");
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         CoursesHelper helper = new CoursesHelper(this);
         String[] projection =
         {
+            get._ID,
             get.COLUMN_TERM,
             get.COLUMN_COURSE,
             get.COLUMN_FINAL_GRADE
@@ -50,17 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
             );
-        //adapter = new CoursesCursorAdapter(this, cursor);
+        adapter = new CoursesCursorAdapter(this, cursor);
+        listView.setAdapter(adapter);
         //todoAdapter.changeCursor(todoCursor);
         //By invoking the changeCursor, I can change what's being displayed on the ListView.
-        try{
-            while(cursor.moveToNext()){
-                for(int index = 0; index < cursor.getColumnCount(); index++) {
-                    Log.i("dhl", cursor.getString(index));
-                }
-            }
-        } finally {
-            cursor.close();
-        }
+        //try{
+        //    while(cursor.moveToNext()){
+        //        for(int index = 0; index < cursor.getColumnCount(); index++) {
+        //            Log.i("dhl", cursor.getString(index));
+        //        }
+        //    }
+        //} finally {
+        //    cursor.close();
+        //}
     }
 }
