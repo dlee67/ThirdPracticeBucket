@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         //A big mess is what _ID is.
         //https://stackoverflow.com/questions/34817574/using-sqlite-in-android-to-get-rowid
+        //There is community accepted design pattern on how we should deal with the _id column.
         values.put(get._ID, "1");
         values.put(get.COLUMN_TERM, "Fall 2014");
         values.put(get.COLUMN_COURSE, "Computer Organization 2");
