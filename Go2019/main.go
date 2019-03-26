@@ -1,25 +1,45 @@
 package main
 
+//https://tutorialedge.net/golang/golang-mysql-tutorial/
+//Almost complete copy pasta from the above.
+
 import(
   "fmt"
+  "database/sql"
+  _ "github.com/go-sql-driver/mysql"
 )
 
-type language struct{
-  name string
-  purpose string
-}
-
-func why(s string, s2 string){
-  fmt.Println(s, s2)
-}
-
-func sayLanguage(n string, p string) language{
-  return language{name: n, purpose: p}
+type Tag struct {
+	name string
+  age int
 }
 
 func main(){
-  f := func(message string){
-    fmt.Println(message)
+  fmt.Println("Go MySQL Tutorial")
+
+  db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/test")
+
+  if err != nil {
+      panic(err.Error())
   }
-  f("This is pretty neat.")
+
+  fmt.Println("MySQL was successfully connected.")
+
+  results, err := db.Query("SELECT name, age FROM person")
+  if err != nil {
+    panic(err.Error())
+	}
+
+  for results.Next(){
+    var tag Tag
+
+    err = results.Scan(&tag.name, &tag.age)
+		if err != nil {
+			panic(err.Error()) // proper error handling instead of panic in your app
+		}
+
+    fmt.Println(tag.name)
+  }
+
+  defer db.Close()
 }
