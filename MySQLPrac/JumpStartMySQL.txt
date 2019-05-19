@@ -1,0 +1,55 @@
+Red Hat/CentOS users should run these post-install commands to set the password
+for MySQL’s root user, register MySQL as a system service,
+and start a running instance
+(Debian/Ubuntu automatically registers and starts MySQL):
+
+1. Set the root user’s password for MySQL: mysqladmin -u root password.
+
+2. Register MySQL to start when the system boots: su -c 'chkconfig --level 2345 mysqld on'.
+
+3. Start the MySQL server: su -c 'systemctl start mysql'.
+
+The above procedure did not work.
+
+Got the solution from here:
+
+https://stackoverflow.com/questions/42153059/mysqld-safe-directory-var-run-mysqld-for-unix-socket-file-dont-exists
+
+I've executed the following commands:
+
+sudo mkdir -p /var/run/mysqld
+sudo chown mysql:mysql /var/run/mysqld
+sudo mysqld_safe --skip-grant-tables &
+
+After the above commands, I opened up a new console to execute the following:
+
+sudo mysql -u root
+
+In the SQL console, I used:
+
+mysql> use mysql
+mysql> describe user;
+mysql> FLUSH PRIVILEGES;
+mysql> SET PASSWORD FOR root@'localhost' = PASSWORD('root');
+
+To access the SQL console again, I will be needing ...
+
+sudo mysql -u root -p
+
+Sometimes, I get this error, where the MySQL screams at me that it can't
+connect to a local socket or something.
+
+The above problem, I solved it via restarting my computer.
+--------------------------------------------------------------------------------
+
+https://stackoverflow.com/questions/8940230/how-to-run-sql-script-in-mysql
+
+I can have premade SQL scripts if I want.
+
+----------------------------------------------
+
+Well, I need a table to store things in MySQL
+
+CREATE TABLE
+
+does just that.
