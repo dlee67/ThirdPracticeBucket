@@ -15,6 +15,13 @@ CREATE TABLE techsites (
 INSERT INTO techsites
     (URL, description, category)
 VALUES
+    ("https://pragprog.com/book/tpp20/the-pragmatic-programmer-20th-anniversary-edition",
+    "20th anniversary edition of the Pragmatic Programmer",
+    "general");
+
+INSERT INTO techsites
+    (URL, description, category)
+VALUES
     ("http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm",
     "\"Handy MySQL Commands.\"",
     "database");
@@ -100,20 +107,30 @@ CREATE TABLE academicsites (
     academic_id_number INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     URL TEXT NOT NULL,
     description TEXT NOT NULL,
+    category TEXT NOT NULL,
     PRIMARY KEY (academic_id_number)
 );
 
 INSERT INTO academicsites
-    (URL, description)
+    (URL, description, category)
 VALUES
     ("http://web.mit.edu/alexmv/6.037/",
-    "One and only.");
+    "One and only.",
+    "functional");
 
 INSERT INTO academicsites
-    (URL, description)
+    (URL, description, category)
 VALUES
     ("https://cs.mines.edu/graduate-program/",
-    "Graduate programs at Mines.");
+    "Graduate programs at Mines.",
+    "HPC");
+
+INSERT INTO academicsites
+    (URL, description, category)
+VALUES
+    ("https://www.coursera.org/learn/machine-learning",
+    "Super Saiyan Dr. Ng teaching a machine learning course.",
+    "Machine Learning");
 
 CREATE TABLE foodsites (
     food_id_number INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
