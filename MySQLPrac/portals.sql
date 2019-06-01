@@ -15,6 +15,13 @@ CREATE TABLE techsites (
 INSERT INTO techsites
     (URL, description, category)
 VALUES
+    ("https://www.hostingadvice.com/how-to/update-node-js-latest-version/",
+    "Was able to update Nodejs with the above. Why is thing so cumbersome to deal with?",
+    "web");
+
+INSERT INTO techsites
+    (URL, description, category)
+VALUES
     ("https://pragprog.com/book/tpp20/the-pragmatic-programmer-20th-anniversary-edition",
     "20th anniversary edition of the Pragmatic Programmer",
     "general");
@@ -39,13 +46,6 @@ VALUES
     ("https://news.ycombinator.com/",
     "Who doesn't know this website by now?",
     "general");
-
-INSERT INTO techsites
-    (URL, description, category)
-VALUES
-    ("https://angular-university.io/",
-    "To learn Angular.",
-    "Angular");
 
 INSERT INTO techsites
     (URL, description, category)
@@ -80,14 +80,14 @@ INSERT INTO techsites
 VALUES
     ("https://dinosaurjs.org/",
     "JS conference in Colorado.",
-    "JavaScript");
+    "web");
 
 INSERT INTO techsites
     (URL, description, category)
 VALUES
     ("https://angulardenver.com/",
     "Angular conference in Colorado.",
-    "Angular");
+    "web");
 
 INSERT INTO techsites
     (URL, description, category)

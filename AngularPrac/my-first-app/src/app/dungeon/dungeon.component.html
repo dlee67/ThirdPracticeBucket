@@ -1,0 +1,9 @@
+<!-- The below is something called String interpolation. -->
+<h1>I am a deep deep deep. {{ boyNextDoor }}</h1>
+<button (click)="sayAniki()"> Aniki caller </button>
+<!-- Not sure what [(ngModel)] is -->
+<input type="text" (input)="changeName($event)" [(ngModel)]="name">
+<p *ngIf="isItBilly"; else noBilly>ANIKI!</p>
+<ng-template #noBilly>
+  <p> Aniki gone.</p>
+</ng-template>

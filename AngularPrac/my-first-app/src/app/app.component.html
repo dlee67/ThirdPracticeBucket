@@ -1,0 +1,10 @@
+<!-- ngStyle just enables you to use a particular css class, but ngClass literally enables you to attach/detach a css class on a whim. -->
+<h1 [ngStyle]="{backgroundColor: getColor()}">{{ gymMaster }}</h1>
+<!-- Not sure why I don't need closing braces below. -->
+<input type="text" [(ngModel)]="vanSays"/>
+<!-- I am basically telling Angular to turn {{ vanSays }} to however it is defined in .van class in app.component.css, when vanSays reference is his iconic locker room quote.-->
+<p [ngClass]="{van: vanSays == 'fuck you'}">{{ vanSays }}</p>
+<hr>
+<!-- Demonstration that components can be nested. -->
+<gym-lockers></gym-lockers>
+<!-- There is this thing called ngFor, which enables you too for loop through an array. -->
