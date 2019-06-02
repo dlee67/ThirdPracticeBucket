@@ -10,22 +10,23 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  it('Checks the boolean values of the AppComponent.', () => {
 
-  it(`should have as title 'MyPortalView'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('MyPortalView');
-  });
+    const mainComponent = new AppComponent();
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to MyPortalView!');
+    mainComponent.showTechSites();
+    expect(mainComponent.techSitesClicked).toBeTruthy();
+    expect(mainComponent.academicSitesClicked).toBeFalsy();
+    expect(mainComponent.foodSitesClicked).toBeFalsy();
+
+    mainComponent.showAcademicSites();
+    expect(mainComponent.techSitesClicked).toBeFalsy();
+    expect(mainComponent.academicSitesClicked).toBeTruthy();
+    expect(mainComponent.foodSitesClicked).toBeFalsy();
+
+    mainComponent.showFoodSites();
+    expect(mainComponent.techSitesClicked).toBeFalsy();
+    expect(mainComponent.academicSitesClicked).toBeFalsy();
+    expect(mainComponent.foodSitesClicked).toBeTruthy();
   });
 });
