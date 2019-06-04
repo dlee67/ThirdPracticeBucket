@@ -1,0 +1,26 @@
+#body {
+    position: absolute;
+    top; 150px;
+    left: 150px;
+    height: 300px;
+    width: 500px;
+    border: black dashed 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+#head {
+    border: green solid 1px;
+    flex-shrink: 0;
+}
+
+#content{
+    border: red solid 1px;
+    overflow-y: auto;
+}
+
+#foot {
+    border: blue solid 1px;
+    height: 50px;
+    flex-shrink: 0;
+}
