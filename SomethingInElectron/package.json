@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^3.0.7"
+    "electron": "^7.2.4"
   },
   "dependencies": {
     "browser-window": "^0.4.0",
